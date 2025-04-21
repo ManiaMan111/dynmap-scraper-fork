@@ -16,6 +16,11 @@ Options:
   -z <level>, --zoom=<level>     Zoom level to download the map at, 0 is
                                  highest resolution (zoomed in) and 5 is
                                  minimum resolution (zoomed out). [default: 0]
+  -m <mapname>, --map=<mapname>  What map to use when scraping.
+                                 Leave blank to use the site default.
+                                 [default: flat]
+  -i, --isometric                Used to denote that the map you are scraping is isometic.
+                                 [default: false]                            
 """
 
 import sys
@@ -40,6 +45,8 @@ def main():
         arguments["--cache"],
         arguments["--size"],
         arguments["--zoom"],
+        arguments["--map"],
+        arguments["--isometric"],
     )
 
 
@@ -74,6 +81,15 @@ def fixargs(arguments: dict):
         arguments["--cache"] = arguments["--cache"].rstrip("/")
 
     del arguments["--no-cache"], arguments["--help"]
+
+    if arguments["--map"] is None or arguments["--map"] == "":
+        arguments["--map"] = "flat"
+
+    if arguments["--isometric"]:
+        arguments["--isometric"] = True
+    else:
+        arguments["--isometric"] = False
+    
 
 
 def error(message, code=1) -> NoReturn:

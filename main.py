@@ -16,12 +16,14 @@ def main() -> None:
     Default functionality (for Elgeis).
     """
     run(
-        "http://dynmap.elgeis.com:2121/",
+        "http://dynmap.elgeis.com:10102/",
         "8302018",
         "dynmap.png",
         "cache",
         None,
-        0,
+        2,
+        "flat",
+        False,
     )
 
 
@@ -32,13 +34,21 @@ def run(
     cache: Optional[str],
     size: Optional[tuple[tuple[int, int], tuple[int, int]]],
     zoom: int,
+    mapname: Optional[str],
+    isometic: Optional[bool]
 ) -> None:
     """
     The primary function that delegates to the other modules.
     """
     if size is None:
-        size = data.worldborder(link, worldname)
-    templates = data.templating(link, cache, worldname, zoom)
+        size = data.worldborder(link, worldname, mapname)
+    templates = data.templating(link, cache, worldname, zoom, mapname)
+
+    if isometic:
+        # Multiply height by 3
+        size = tuple([size[0], tuple(x * 3.2 for x in size[1])])
+        # Multiply width bby 6
+        size = tuple([tuple(x * 6.2 for x in size[0]), size[1]])
 
     tilesize = tiles.get_tilesize(zoom)
     rangeX, rangeZ = tiles.blocks_to_tiles(*size[0], *size[1], tilesize)

@@ -23,12 +23,12 @@ def _get(*args, wrapper_depth: int = 0, **kwargs):
 
 
 def worldborder(
-    baselink: str, world: str
+    baselink: str, world: str, mapname: str
 ) -> tuple[tuple[int, int], tuple[int, int]]:
     """
     Scrapes the dynmap data to obtain the world border radius.
     """
-    data = _get(f"{baselink}tiles/_markers_/marker_{world}.json").json()
+    data = _get(f"{baselink}tiles/_markers_/marker_{world}.json?mapname={mapname}").json()
     border_data = data["sets"]["markers"]["areas"][f"_worldborder_{world}"]
     X = border_data["x"]
     Z = border_data["z"]
@@ -65,16 +65,16 @@ def getimage(
 
 
 def templating(
-    baselink: str, cachefolder: Optional[str], world: str, zoom: int
+    baselink: str, cachefolder: Optional[str], world: str, zoom: int, mapname: str
 ) -> tuple[str, Optional[str]]:
     """
     Creates a link and a cache template for `getimage` from the values in the
     arguments. If the `cachefolder` directory does not exist, it is created.
     """
     zoomstr = "z" * zoom + "_" if zoom else ""
-    link = f"{baselink}tiles/{world}/flat/0_0/{zoomstr}" + "{x}_{z}.png"
+    link = f"{baselink}tiles/{world}/{mapname}/0_0/{zoomstr}" + "{x}_{z}.png"
 
-    cache: Optional[str] = f"{cachefolder}/{world}_{zoomstr}" + "{x}_{z}.png"
+    cache: Optional[str] = f"{cachefolder}/{world}_{mapname}_{zoomstr}" + "{x}_{z}.png"
     try:
         if cachefolder:
             mkdir(cachefolder)
