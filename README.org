@@ -2,7 +2,7 @@
 #+AUTHOR: MithicSpirit
 #+AUTHOR: ManiaMan
 
-A tool written in Python for downloading maps as images from MC server [[https://dev.bukkit.org/projects/dynmap][Dynmaps]]. This is a version forked from MithicSpirit's orginal so that I can update and add new features.
+A tool written in Python for downloading maps as images from MC server [[https://dev.bukkit.org/projects/dynmap][Dynmaps]]. This is a version forked from [[https://github.com/MithicSpirit/dynmap-scraper][MithicSpirit's]] orginal so that I can update and add new features.
 
 * Using
 ** Dependencies
@@ -81,6 +81,6 @@ This is the level of zoom that is used, with 0 being maximum zoom and 5 being
 minimum zoom. Each additional level of zoom scales down the resolution by a
 factor of 2.
 **** Map Name (line 25)
-This is used to specify the map that you want to scrape, this defaults to "flat" as that is the basic example and first map you see when loading dynmap, but you can set it to any of the custom maps the owners create like "night" or "test" for example. Note that this is not World, there can be multiple maps for one world.
-****Isometric (line 26)
+This is used to specify the map that you want to scrape, this defaults to "flat2" as that is the basic example and first map you see when loading dynmap, but you can set it to any of the custom maps the owners create like "night" or "test" for example. Note that this is not World, there can be multiple maps for one world.
+**** Isometric (line 26)
 This is a flag used to say that the mapname you selected is an isometric view. Defaults to false if not set.

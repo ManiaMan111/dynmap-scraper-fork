@@ -15,14 +15,15 @@ def main() -> None:
     """
     Default functionality (for Elgeis).
     """
+    print("Running with default parameters (Elgeis dynmap).")
     run(
         "http://dynmap.elgeis.com:10102/",
         "8302018",
         "dynmap.png",
         "cache",
         None,
-        2,
-        "flat",
+        4,
+        "flat2",
         False,
     )
 
@@ -47,7 +48,7 @@ def run(
     if isometic:
         # Multiply height by 3
         size = tuple([size[0], tuple(x * 3.2 for x in size[1])])
-        # Multiply width bby 6
+        # Multiply width by 6
         size = tuple([tuple(x * 6.2 for x in size[0]), size[1]])
 
     tilesize = tiles.get_tilesize(zoom)
@@ -69,6 +70,7 @@ def run(
             pbar.update(1)
     pbar.close()
 
+    #full_map.save("initial.png")
     full_map = image.trim(full_map, zoom, size, (rangeX, rangeZ))
     print("Saving image. This may take a while.")
     full_map.save(output)
