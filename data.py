@@ -4,15 +4,25 @@ Obtains data from a cache or from the dynmap.
 
 from io import BytesIO
 import requests
+
 from os import mkdir
 from time import sleep
 from PIL import Image
 from typing import Optional
 
+session = requests.Session()
+adapter = requests.adapters.HTTPAdapter(
+    pool_connections=16,
+    pool_maxsize=16
+)
+
+session.mount("http://", adapter)
+session.mount("https://", adapter)
+
 
 def _get(*args, wrapper_depth: int = 0, **kwargs):
     try:
-        return requests.get(*args, **kwargs, timeout=30)
+        return session.get(*args, **kwargs, timeout=30)
     except requests.exceptions.RequestException as err:
         if wrapper_depth > 5:
             raise err

@@ -6,8 +6,8 @@ Options:
   -c [folder], --cache=[folder]  Optionally set a cache folder.
                                  [default: cache]
   -C, --no-cache                 Disables cache (overrides --cache).
-  -o <file>, --output=<file>     Specifies which file to output the image to
-                                 [default: dynmap.png]
+  -o <file>, --output=<file>     Specifies what to name the oputput file. Do not add an extension, it will be added automatically.
+                                 [default: dynmap_[yyyy-mm-dd].png]
   --size=[x1,x2,z1,z2]           A comma-separated list of the coordinates of
                                  the region from which to download the map. Set
                                  to `worldborder' to attempt to utilize the

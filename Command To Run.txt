@@ -1,0 +1,1 @@
+python cli.py "http://dynmap.elgeis.com:10102/" "8302018" --output=dynmap.png --cache=cache --size=worldborder --zoom=4 --map flat2
