@@ -14,6 +14,12 @@ A tool written in Python for downloading maps as images from MC server [[https:/
 - A reasonable amount of RAM (A 6000×6000 map at maximum zoom will take around
   2.5 GB of RAM)
 ** Guide
+*** EXE
+There is now an EXE file that anyone should be able to run without any setup or other instalations at =dist/main.exe=.
+
+This runs with the same defaults specified in main.py which is what the Elgeis political map uses, with 1px per block and set to follow the worldborder.
+
+
 *** CLI
 With the dependencies installed (including =docopt=), the CLI can be run by
 executing =cli.py= with =python3.9= (e.g. ~python3.9 cli.py~). This will fail if
@@ -23,7 +29,7 @@ running it with the =--help= flag (e.g. ~python3.9 cli.py --help~).
 To have the same output as the default output from the manual section (i.e. just
 executing =main.py= directly) use the following:
 #+begin_src sh
-python cli.py "http://dynmap.elgeis.com:10102/" "8302018" --output=dynmap.png --cache=cache --size=worldborder --zoom=2 --map flat
+python cli.py "http://dynmap.elgeis.com:10102/" "8302018" --output=dynmap.png --cache=cache --size=worldborder --zoom=4 --map flat2
 #+end_src
 Note that everything from =--output= onwards is optional in this case as it is
 the same as the default values, so
@@ -80,6 +86,6 @@ This is the level of zoom that is used, with 0 being maximum zoom and 5 being
 minimum zoom. Each additional level of zoom scales down the resolution by a
 factor of 2.
 **** Map Name (line 25)
-This is used to specify the map that you want to scrape, this defaults to "flat" as that is the basic example and first map you see when loading dynmap, but you can set it to any of the custom maps the owners create like "night" or "test" for example. Note that this is not World, there can be multiple maps for one world.
+This is used to specify the map that you want to scrape, this defaults to "flat2" as that is the basic example and first map you see when loading dynmap, but you can set it to any of the custom maps the owners create like "night" or "test" for example. Note that this is not World, there can be multiple maps for one world.
 ****Isometric (line 26)
-This is a flag used to say that the mapname you selected is an isometric view. Defaults to false if not set.
+This is a flag used to say that the mapname you selected is an isometric view. Defaults to false if not set. This is more experimental and not very well supported.
